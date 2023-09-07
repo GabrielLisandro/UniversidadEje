@@ -7,6 +7,13 @@ package universidadeje;
 
 import java.sql.Connection;
 import universidadeje.AccesoADatos.Conexion;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +26,7 @@ public class UniversidadEje {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+            Connection con=Conexion.getConexion();
     }
     
-    Connection con=Conexion.getConexion();
 }
