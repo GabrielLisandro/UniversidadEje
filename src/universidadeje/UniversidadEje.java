@@ -5,6 +5,9 @@
  */
 package universidadeje;
 
+import java.sql.Connection;
+import universidadeje.AccesoADatos.Conexion;
+
 /**
  *
  * @author kamar
@@ -18,4 +21,5 @@ public class UniversidadEje {
         // TODO code application logic here
     }
     
+    Connection con=Conexion.getConexion();
 }
