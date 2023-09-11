@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package universidadeje;
 
 import java.sql.Connection;
@@ -11,22 +6,25 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import universidadeje.AccesoADatos.AlumnoData;
+import universidadeje.Entidades.Alumno;
 
-/**
- *
- * @author kamar
- */
 public class UniversidadEje {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
-            Connection con=Conexion.getConexion();
+
+        //Alumno alumnonuevo = new Alumno(35124784, "Bermudez", "Carolina", LocalDate.of(1987, 05, 07), true);
+
+        AlumnoData alumno = new AlumnoData();
+       // alumno.guardarAlumno(alumnonuevo);
+
+        
+        alumno.buscarAlumno(1);
     }
-    
+
 }
