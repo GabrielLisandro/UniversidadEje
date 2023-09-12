@@ -1,6 +1,7 @@
 package universidadeje;
 
 
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import universidadeje.AccesoADatos.AlumnoData;
 import universidadeje.Entidades.Alumno;
@@ -13,9 +14,20 @@ public class UniversidadEje {
         AlumnoData alumno = new AlumnoData();
         //alumno.guardarAlumno(alumnonuevo);
         //alumno.buscarAlumno(1);
-        Alumno alumnoEncontrado;
-        alumnoEncontrado = alumno.buscarAlumnoDni(35124784);
-        JOptionPane.showMessageDialog(null,alumnoEncontrado.toString());
+       // Alumno alumnoEncontrado;
+        //alumnoEncontrado = alumno.buscarAlumnoDni(35124784);
+        //JOptionPane.showMessageDialog(null,alumnoEncontrado.toString());
+        
+        /*for (Alumno alum : alumno.listaAlumno()) {
+           JOptionPane.showMessageDialog(null, alum.getDni()+"\n"+alum.getApellido()+"\n"+
+                   alum.getNombre()+"\n"+alum.getFechaNacimiento()+"\n");
+        }
+        Alumno alumnonuevo = new Alumno(2, 35124784, "Bermudez Martin", "Carolina Eugenia", LocalDate.of(1957, 05, 07), true);
+        
+        alumno.modificarAlumno(alumnonuevo);
+        */
+                alumno.eliminarAlumno(2);
+
     }
 
 }

@@ -6,6 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import universidadeje.Entidades.Alumno;
 
@@ -79,6 +84,7 @@ public class AlumnoData {
         return alumno;
 
     }
+
     public Alumno buscarAlumnoDni(int dni) {
         String buscarAlumSql = "SELECT idAlumno, dni, apellido, nombre, fechaNacimiento,"
                 + "estado FROM alumno WHERE dni = ? AND estado = true";
@@ -99,9 +105,7 @@ public class AlumnoData {
                 alumno.setEstado(true);
 
             } else {
-
                 JOptionPane.showMessageDialog(null, "No se encontro el dni del Alumno buscado");
-
             }
             buscarAlumPs.close();
 
@@ -109,7 +113,73 @@ public class AlumnoData {
             JOptionPane.showMessageDialog(null, "Error en la busqueda del Alumno " + ex.getMessage());
         }
         return alumno;
-
     }
 
-}
+    public List<Alumno> listaAlumno() {
+        String qer = "SELECT * FROM alumno WHERE estado = 1";
+
+        List<Alumno> alum = new ArrayList<Alumno>();
+        try {
+            PreparedStatement psq = con.prepareStatement(qer);
+            ResultSet setr = psq.executeQuery();
+
+            Alumno alumno;
+
+            while (setr.next()) {
+                alumno = new Alumno();
+                alumno.setIdAlumno(setr.getInt("idAlumno"));
+                alumno.setDni(setr.getInt("dni"));
+                alumno.setApellido(setr.getString("apellido"));
+                alumno.setNombre(setr.getString("nombre"));
+                alumno.setFechaNacimiento(setr.getDate("fechaNacimiento").toLocalDate());
+                alumno.setEstado(true);
+
+                alum.add(alumno);
+            }
+            psq.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se encontro lista" + ex.getMessage());
+        }
+
+        return alum;
+    }
+
+    public void modificarAlumno(Alumno alumno) {
+
+        String sql = "UPDATE alumno SET dni=?, apellido=?, nombre=?, fechaNacimiento=? WHERE idAlumno=?";
+        try {
+            PreparedStatement my = con.prepareStatement(sql);
+            my.setInt(1, alumno.getDni());
+            my.setString(2, alumno.getApellido());
+            my.setString(3, alumno.getNombre());
+            my.setDate(4, Date.valueOf(alumno.getFechaNacimiento()));
+            my.setInt(5, alumno.getIdAlumno());
+            int exito = my.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Modification escitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "El alumnado no habria de existir.");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a alumno" + ex.getMessage());
+        }
+    }
+
+    public void eliminarAlumno(int id) {
+        String mysql = "UPDATE alumno SET estado=0 WHERE idAlumno =?";
+        try {
+            PreparedStatement fr = con.prepareStatement(mysql);
+            fr.setInt(1, id);
+            int filas=fr.executeUpdate();
+            
+            if (filas==1) {
+                JOptionPane.showMessageDialog(null, "Alumno expulsado.");
+            }else{JOptionPane.showMessageDialog(null, "Alumno no eliminado");}
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al modificar estado" + ex.getMessage());
+
+        }
+    }}
