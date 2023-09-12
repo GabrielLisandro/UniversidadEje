@@ -4,7 +4,9 @@ package universidadeje;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import universidadeje.AccesoADatos.AlumnoData;
+import universidadeje.AccesoADatos.MateriaData;
 import universidadeje.Entidades.Alumno;
+import universidadeje.Entidades.Materia;
 
 public class UniversidadEje {
 
@@ -25,9 +27,12 @@ public class UniversidadEje {
         Alumno alumnonuevo = new Alumno(2, 35124784, "Bermudez Martin", "Carolina Eugenia", LocalDate.of(1957, 05, 07), true);
         
         alumno.modificarAlumno(alumnonuevo);
-        */
+        
                 alumno.eliminarAlumno(2);
-
+*/
+        Materia materia =new Materia(1, "Quimica general", 1, true);
+        MateriaData mater = new MateriaData();
+        mater.guardarMateria(materia);
     }
 
 }
