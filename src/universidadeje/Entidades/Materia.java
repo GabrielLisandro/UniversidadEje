@@ -5,7 +5,7 @@
  */
 package universidadeje.Entidades;
 
-import java.time.LocalDate;
+
 
 /**
  *
@@ -15,20 +15,20 @@ public class Materia {
     
     private int idMateria;
     private String nombre;
-    private LocalDate anioMateria;
+    private int anioMateria;
     private boolean estado;
     
     public Materia(){
     }
     
-    public Materia(int idMateria, String nombre, LocalDate anioMateria, boolean estado){
+    public Materia(int idMateria, String nombre, int anioMateria, boolean estado){
         this.idMateria=idMateria;
         this.nombre=nombre;
         this.anioMateria=anioMateria;
         this.estado=estado;
     }
 
-    public Materia(String nombre, LocalDate anioMateria, boolean estado) {
+    public Materia(String nombre, int anioMateria, boolean estado) {
         this.nombre = nombre;
         this.anioMateria = anioMateria;
         this.estado = estado;
@@ -50,11 +50,11 @@ public class Materia {
         this.nombre = nombre;
     }
 
-    public LocalDate getAnioMateria() {
+    public int getAnioMateria() {
         return anioMateria;
     }
 
-    public void setAnioMateria(LocalDate anioMateria) {
+    public void setAnioMateria(int anioMateria) {
         this.anioMateria = anioMateria;
     }
 
