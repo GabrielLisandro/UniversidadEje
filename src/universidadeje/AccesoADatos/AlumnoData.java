@@ -31,7 +31,7 @@ public class AlumnoData {
             guarAlumPs.setString(3, alumno.getNombre());
             guarAlumPs.setDate(4, Date.valueOf(alumno.getFechaNacimiento()));
             guarAlumPs.setBoolean(5, alumno.isEstado());
-            
+
             guarAlumPs.executeUpdate();
             ResultSet rs = guarAlumPs.getGeneratedKeys();
             if (rs.next()) {
@@ -48,43 +48,36 @@ public class AlumnoData {
 
     }
 
-    public void buscarAlumno(int id) {
+    public Alumno buscarAlumno(int id) {
         String buscarAlumSql = "SELECT `dni`, `apellido`, `nombre`, `fechaNacimiento`, `estado` FROM `alumno` WHERE idAlumno = ? AND estado = true";
-
+        Alumno alumno = null;
         try {
-            PreparedStatement buscarAlumPs = con.prepareStatement(buscarAlumSql);
 
+            PreparedStatement buscarAlumPs = con.prepareStatement(buscarAlumSql);
+            buscarAlumPs.setInt(1, id);
             ResultSet rs = buscarAlumPs.executeQuery();
-            buscarAlumPs.setInt(1,id );
-            
+
             if (rs.next()) {
-              Alumno alumno = new Alumno();
+                alumno = new Alumno();
                 alumno.setIdAlumno(id);
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
                 alumno.setEstado(true);
-                
-                
-            }
-            else {
-                JOptionPane.showMessageDialog(null, "No se encontro el Alumno");
-                
-            }
-            
-            buscarAlumPs.close();
-        } catch (SQLException ex) {
-             JOptionPane.showMessageDialog(null, "Error en la busqueda del Alumno " + ex.getMessage());
-        }
 
-        
-        
-        
-        
+            } else {
+
+                JOptionPane.showMessageDialog(null, "No se encontro el Alumno");
+
+            }
+            buscarAlumPs.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en la busqueda del Alumno " + ex.getMessage());
+        }
+        return alumno;
+
     }
 
-
-    
-    
 }
