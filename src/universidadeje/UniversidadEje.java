@@ -34,9 +34,20 @@ public class UniversidadEje {
         MateriaData mater = new MateriaData();
       /*  mater.guardarMateria(materia);*/
         
-        mater.buscarMateria(3);
+       /* mater.buscarMateria(3);
         Materia materiaEncontrada = mater.buscarMateria(3);
-        JOptionPane.showMessageDialog(null, materiaEncontrada.toString());
+        JOptionPane.showMessageDialog(null, materiaEncontrada.toString());*/
+       
+       
+        for(Materia materia : mater.listaMateria()) {
+           JOptionPane.showMessageDialog(null, materia.getIdMateria()+"\n"+materia.getNombre()+"\n"+
+                   materia.getAnioMateria()+"\n"+materia.isEstado()+"\n");
+        }
+        
     }
 
+    
+    
+    
+    
 }

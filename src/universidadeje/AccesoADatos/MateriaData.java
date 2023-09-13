@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import universidadeje.Entidades.Alumno;
 import universidadeje.Entidades.Materia;
@@ -52,7 +54,8 @@ public class MateriaData {
         
     }
     
-     public Materia buscarMateria(int id) {
+     
+    public Materia buscarMateria(int id) {
         String buscarMaterSql = "SELECT `nombre`, `aniomateria`, `estado` FROM `materia` WHERE idMateria = ? AND estado = true";
         Materia materia = null;
         try {
@@ -82,6 +85,35 @@ public class MateriaData {
 
     }
       
+     
+     public List<Materia> listaMateria() {
+        String sql = "SELECT * FROM materia WHERE estado = 1";
+
+        List<Materia> mater = new ArrayList<Materia>();
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet setr = ps.executeQuery();
+
+            Materia materia;
+
+            while (setr.next()) {
+                materia = new Materia();
+                materia.setIdMateria(setr.getInt("idMateria"));      
+                materia.setNombre(setr.getString("nombre"));   
+                materia.setAnioMateria(setr.getInt("anioMateria"));
+                materia.setEstado(true);
+
+                mater.add(materia);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se encontro la lista de materias" + ex.getMessage());
+        }
+
+        return mater;
+    }
      
      
      
