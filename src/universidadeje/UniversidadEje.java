@@ -39,15 +39,27 @@ public class UniversidadEje {
         JOptionPane.showMessageDialog(null, materiaEncontrada.toString());*/
        
        
-        for(Materia materia : mater.listaMateria()) {
+       /*for(Materia materia : mater.listaMateria()) {
            JOptionPane.showMessageDialog(null, materia.getIdMateria()+"\n"+materia.getNombre()+"\n"+
-                   materia.getAnioMateria()+"\n"+materia.isEstado()+"\n");
-        }
+                   materia.getAnioMateria()+"\n"+materia.isEstado()+"\n");*/
         
+        
+            Materia materia =new Materia(3, "Matematica", 2, true);
+        mater.modificarMateria(materia);
+       
+  
+        
+        
+        
+        
+        
+        }
+    
+      
     }
 
     
     
     
     
-}
+

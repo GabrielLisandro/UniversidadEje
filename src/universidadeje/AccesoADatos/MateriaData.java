@@ -115,7 +115,28 @@ public class MateriaData {
         return mater;
     }
      
-     
+     public void modificarMateria(Materia materia) {
+
+        String sql = "UPDATE materia SET nombre=?, anioMateria=? WHERE idMateria=?";
+        try {
+            PreparedStatement my = con.prepareStatement(sql);
+            
+            my.setString(1, materia.getNombre());
+            my.setInt(2, materia.getAnioMateria());
+            my.setInt(3, materia.getIdMateria());
+            
+            int exito = my.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Modification exitosa");
+            } else {
+                JOptionPane.showMessageDialog(null, "La Materia no exite");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a materia" + ex.getMessage());
+        }
+    }
      
      
     }   
