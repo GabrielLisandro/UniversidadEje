@@ -115,6 +115,7 @@ public class MateriaData {
         return mater;
     }
      
+     
      public void modificarMateria(Materia materia) {
 
         String sql = "UPDATE materia SET nombre=?, anioMateria=? WHERE idMateria=?";
@@ -139,4 +140,20 @@ public class MateriaData {
     }
      
      
-    }   
+     public void eliminarMateria(int id) {
+        String mysql = "UPDATE materia SET estado=0 WHERE idMateria =?";
+        try {
+            PreparedStatement fr = con.prepareStatement(mysql);
+            fr.setInt(1, id);
+            int filas=fr.executeUpdate();
+            
+            if (filas==1) {
+                JOptionPane.showMessageDialog(null, "Materia Eliminada.");
+            }else{JOptionPane.showMessageDialog(null, "No se pudo Eliminar la Materia");}
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al modificar el estado" + ex.getMessage());
+
+        }
+     
+     }
+}
