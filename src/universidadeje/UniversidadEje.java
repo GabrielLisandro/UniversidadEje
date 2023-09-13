@@ -30,9 +30,13 @@ public class UniversidadEje {
         
                 alumno.eliminarAlumno(2);
 */
-        Materia materia =new Materia(1, "Quimica general", 1, true);
+      /* Materia materia =new Materia(3, "Matematica", 1, true);*/
         MateriaData mater = new MateriaData();
-        mater.guardarMateria(materia);
+      /*  mater.guardarMateria(materia);*/
+        
+        mater.buscarMateria(3);
+        Materia materiaEncontrada = mater.buscarMateria(3);
+        JOptionPane.showMessageDialog(null, materiaEncontrada.toString());
     }
 
 }
