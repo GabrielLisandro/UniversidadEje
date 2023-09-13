@@ -3,8 +3,10 @@ package universidadeje;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import universidadeje.AccesoADatos.AlumnoData;
+import universidadeje.AccesoADatos.InscripcionData;
 import universidadeje.AccesoADatos.MateriaData;
 import universidadeje.Entidades.Alumno;
+import universidadeje.Entidades.Inscripcion;
 import universidadeje.Entidades.Materia;
 
 public class UniversidadEje {
@@ -42,7 +44,17 @@ public class UniversidadEje {
      /*   Materia materia = new Materia(3, "Matematica", 2, true);
         mater.modificarMateria(materia);*/
 
-        mater.eliminarMateria(2); 
+       // mater.eliminarMateria(2); 
+        
+       
+       Inscripcion ins = new Inscripcion();
+       
+       InscripcionData Inscripcion = new InscripcionData();
+       
+       
+       
+       
+        
         
         
     }
