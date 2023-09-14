@@ -55,12 +55,28 @@ public class UniversidadEje {
        InscripcionData Inscrip = new InscripcionData();
        //Inscrip.guarInscripcion(ins);
        
-       for (Inscripcion Insc : Inscrip.listaInscripcion()) {
+      /* for (Inscripcion Insc : Inscrip.listaInscripcion()) {
+        JOptionPane.showMessageDialog(null, Insc.getIdInscripcion()+"\n"+ Insc.getMateria()+"\n"+
+                   Insc.getAlumno().getApellido()+"\n"+ Insc.getNota()+"\n");*/
+        
+        
+        
+        for (Inscripcion Insc : Inscrip.listaInscrPorAlum(1)) {
         JOptionPane.showMessageDialog(null, Insc.getIdInscripcion()+"\n"+ Insc.getMateria()+"\n"+
                    Insc.getAlumno().getApellido()+"\n"+ Insc.getNota()+"\n");
+                
+                  
+                }
         
         
-       }    
+           
+    
+    
+       
+       
+    
+    
     }
+    
 
 }
