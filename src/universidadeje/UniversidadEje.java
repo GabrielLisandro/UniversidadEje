@@ -53,10 +53,14 @@ public class UniversidadEje {
       Inscripcion ins = new Inscripcion(Quimica, Mariano, 9);
        
        InscripcionData Inscrip = new InscripcionData();
-       Inscrip.guarInscripcion(ins);
-             
+       //Inscrip.guarInscripcion(ins);
+       
+       for (Inscripcion Insc : Inscrip.listaInscripcion()) {
+        JOptionPane.showMessageDialog(null, Insc.getIdInscripcion()+"\n"+ Insc.getMateria()+"\n"+
+                   Insc.getAlumno().getApellido()+"\n"+ Insc.getNota()+"\n");
         
         
+       }    
     }
 
 }
