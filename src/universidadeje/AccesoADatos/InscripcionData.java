@@ -21,11 +21,11 @@ public class InscripcionData {
         con = Conexion.getConexion();
     }
     
-   public void guarInscripcion (){
+   public void guarInscripcion (Inscripcion ins){
      String guarInscripSql = "INSERT INTO `inscripcion`(`idMateria`, `idAlumno`, `nota`)"
-     + "VALUES ('?','?','?')" ;
+     + "VALUES (?,?,?)";
 
-     Inscripcion ins = new Inscripcion();
+     
      
      
         try {
@@ -55,6 +55,8 @@ public class InscripcionData {
         }
 
     }
+
+   
     
     
     

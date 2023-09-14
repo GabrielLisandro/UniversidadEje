@@ -12,20 +12,20 @@ package universidadeje.Entidades;
 public class Inscripcion {
    
     private int idInscripcion;
-    private Alumno alumno;
     private Materia materia;
+    private Alumno alumno;
     private double nota;
 
-    public Inscripcion(int idInscripcion, Alumno alumno, Materia materia, double nota) {
+    public Inscripcion(int idInscripcion, Materia materia, Alumno alumno, double nota) {
         this.idInscripcion = idInscripcion;
-        this.alumno = alumno;
         this.materia = materia;
+        this.alumno = alumno;
         this.nota = nota;
     }
 
-    public Inscripcion(Alumno alumno, Materia materia, double nota) {
-        this.alumno = alumno;
+    public Inscripcion(Materia materia, Alumno alumno, double nota) {
         this.materia = materia;
+        this.alumno = alumno;
         this.nota = nota;
     }
 
@@ -40,20 +40,20 @@ public class Inscripcion {
         this.idInscripcion = idInscripcion;
     }
 
-    public Alumno getAlumno() {
-        return alumno;
-    }
-
-    public void setAlumno(Alumno alumno) {
-        this.alumno = alumno;
-    }
-
     public Materia getMateria() {
         return materia;
     }
 
     public void setMateria(Materia materia) {
         this.materia = materia;
+    }
+
+    public Alumno getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
     }
 
     public double getNota() {
@@ -71,6 +71,5 @@ public class Inscripcion {
                 alumno.getNombre()+" "+materia.getNombre();
         return insc;
     }
-    
     
 }

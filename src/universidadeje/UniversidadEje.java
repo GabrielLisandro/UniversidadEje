@@ -46,15 +46,15 @@ public class UniversidadEje {
 
        // mater.eliminarMateria(2); 
         
+       Alumno Mariano = alumno.buscarAlumno(9);
+       Materia Quimica = mater.buscarMateria(3);
        
-       Inscripcion ins = new Inscripcion();
+               
+      Inscripcion ins = new Inscripcion(Quimica, Mariano, 9);
        
-       InscripcionData Inscripcion = new InscripcionData();
-       
-       
-       
-       
-        
+       InscripcionData Inscrip = new InscripcionData();
+       Inscrip.guarInscripcion(ins);
+             
         
         
     }
