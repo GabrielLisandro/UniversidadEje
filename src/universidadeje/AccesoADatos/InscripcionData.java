@@ -167,11 +167,40 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "No se encontro lista de Inscripcion" + ex.getMessage());
         }
         return InMat;
+       
     }   
      
+    public void eliminarInscripcion(int idMateria, int idAlumno) {
+    
+        String elim = "DELETE FROM `inscripcion` WHERE idMateria = ? AND idAlumno = ?";
+        
+        try {
+            
+            PreparedStatement elimin = con.prepareStatement(elim);
+            elimin.setInt(1, idMateria);
+            elimin.setInt(2, idAlumno);
+            
+            int supr = elimin.executeUpdate();
+            
+            if (supr > 0) {
+                
+                JOptionPane.showMessageDialog(null, "Se elimino excitosamente la Inscripcion");
+                
+            }
+            elimin.close();
+            
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar la Inscripcion");
+        }
+    
+    
         
         
         
+}
+       
 }
 
 
