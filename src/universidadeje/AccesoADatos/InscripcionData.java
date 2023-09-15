@@ -20,7 +20,7 @@ public class InscripcionData {
     private final AlumnoData ad = new AlumnoData();
     public InscripcionData() {
 
-        con = Conexion.getConexion();
+    con = Conexion.getConexion();
     }
 
     public void guarInscripcion(Inscripcion ins) {
@@ -49,7 +49,6 @@ public class InscripcionData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al conectarse en Inscripcion " + ex.getMessage());
         }
-
     }
 
         
@@ -73,15 +72,12 @@ public class InscripcionData {
                 inscripcion.setNota(setr.getDouble("nota"));
                 
                 Inscr.add(inscripcion);
-                                
-              
-            }
+           }
             psq.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se encontro lista de Inscripcion" + ex.getMessage());
         }
-
         return Inscr;
     }   
         
@@ -106,52 +102,81 @@ public class InscripcionData {
                 inscripcion.setNota(setr.getDouble("nota"));
                 
                 Inscr.add(inscripcion);
-                                
-              
             }
             psq.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se encontro lista de Inscripcion" + ex.getMessage());
         }
-
         return Inscr;
     }   
      
-     
-     public List<Inscripcion> listaInscrPorMater(int idMateria) {
-        String qer = "SELECT * FROM Inscripcion idMateria. = ? ";
+    public List<Inscripcion> listaInscrPorMater(int idMateria) {
+        String sqlInMat = "SELECT * FROM Inscripcion WHERE idMateria = ? AND idMateria.estado = 1";
 
-        List<Inscripcion> Inscr = new ArrayList<Inscripcion>();
+        List<Inscripcion> InMat = new ArrayList<Inscripcion>();
         try {
-            PreparedStatement psq = con.prepareStatement(qer);
-            psq.setInt(1, idAlumno);
-            ResultSet setr = psq.executeQuery();
+            PreparedStatement InMatpsq = con.prepareStatement(sqlInMat);
+            InMatpsq.setInt(1, idMateria);
+            ResultSet rS = InMatpsq.executeQuery();
 
             Inscripcion inscripcion;
 
-            while (setr.next()) {
+            while (rS.next()) {
                 inscripcion = new Inscripcion();
-                inscripcion.setIdInscripcion(setr.getInt("idInscripcion"));
-                Alumno Alum = ad.buscarAlumno(setr.getInt("idAlumno"));
-                Materia Mater = md.buscarMateria(setr.getInt("idMateria"));
+                
+                inscripcion.setIdInscripcion(rS.getInt("idInscripcion"));
+                Alumno Alum = ad.buscarAlumno(rS.getInt("idAlumno"));
+                Materia Mater = md.buscarMateria(rS.getInt("idMateria"));
+                
                 inscripcion.setAlumno(Alum);
                 inscripcion.setMateria(Mater);
-                inscripcion.setNota(setr.getDouble("nota"));
+                inscripcion.setNota(rS.getDouble("nota"));
                 
-                Inscr.add(inscripcion);
-                                
-              
+                InMat.add(inscripcion);
             }
-            psq.close();
+            InMatpsq.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se encontro lista de Inscripcion" + ex.getMessage());
         }
-
-        return Inscr;
+        return InMat;
     }   
      
+        public List<Inscripcion> listaInscrPorMaterNoCursadas(int idMateria) {
+        String sqlInMat = "SELECT * FROM Inscripcion WHERE idMateria = ? AND idMateria.estado = 0";
+
+        List<Inscripcion> InMat = new ArrayList<Inscripcion>();
+        try {
+            PreparedStatement InMatpsq = con.prepareStatement(sqlInMat);
+            InMatpsq.setInt(1, idMateria);
+            ResultSet rS = InMatpsq.executeQuery();
+
+            Inscripcion inscripcion;
+
+            while (rS.next()) {
+                inscripcion = new Inscripcion();
+                
+                inscripcion.setIdInscripcion(rS.getInt("idInscripcion"));
+                Alumno Alum = ad.buscarAlumno(rS.getInt("idAlumno"));
+                Materia Mater = md.buscarMateria(rS.getInt("idMateria"));
+                
+                inscripcion.setAlumno(Alum);
+                inscripcion.setMateria(Mater);
+                inscripcion.setNota(rS.getDouble("nota"));
+                
+                InMat.add(inscripcion);
+            }
+            InMatpsq.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se encontro lista de Inscripcion" + ex.getMessage());
+        }
+        return InMat;
+    }
+        
+        
+        
         
 }
 
