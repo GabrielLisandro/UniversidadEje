@@ -111,29 +111,26 @@ public class InscripcionData {
         return Inscr;
     }   
      
-    public List<Inscripcion> listaInscrPorMater(int idMateria) {
-        String sqlInMat = "SELECT * FROM Inscripcion WHERE idMateria = ? AND idMateria.estado = 1";
+    public List<Materia> obtenerMateriaCursadas(int idAlumno) {
+        String sqlInMat = "SELECT inscripcion.idMateria , nombre , anioMateria FROM inscripcion, materia "
+                + "WHERE inscripcion.idMateria = materia.idMateria AND inscripcion.idAlumno = ?";
 
-        List<Inscripcion> InMat = new ArrayList<Inscripcion>();
+        List<Materia> InMat = new ArrayList<Materia>();
         try {
             PreparedStatement InMatpsq = con.prepareStatement(sqlInMat);
-            InMatpsq.setInt(1, idMateria);
+            InMatpsq.setInt(1, idAlumno);
             ResultSet rS = InMatpsq.executeQuery();
 
-            Inscripcion inscripcion;
+            Materia materia;
 
             while (rS.next()) {
-                inscripcion = new Inscripcion();
+                materia = new Materia();
                 
-                inscripcion.setIdInscripcion(rS.getInt("idInscripcion"));
-                Alumno Alum = ad.buscarAlumno(rS.getInt("idAlumno"));
-                Materia Mater = md.buscarMateria(rS.getInt("idMateria"));
-                
-                inscripcion.setAlumno(Alum);
-                inscripcion.setMateria(Mater);
-                inscripcion.setNota(rS.getDouble("nota"));
-                
-                InMat.add(inscripcion);
+                materia.setIdMateria(rS.getInt("idMateria"));           
+                materia.setNombre(rS.getString("nombre"));
+                materia.setAnioMateria(rS.getInt("anioMateria"));
+                materia.setEstado(true);
+                InMat.add(materia);
             }
             InMatpsq.close();
 
@@ -143,29 +140,26 @@ public class InscripcionData {
         return InMat;
     }   
      
-        public List<Inscripcion> listaInscrPorMaterNoCursadas(int idMateria) {
-        String sqlInMat = "SELECT * FROM Inscripcion WHERE idMateria = ? AND idMateria.estado = 0";
+        public List<Materia> obtenerMateriaNoCursadas(int idAlumno) {
+        String sqlInMat = "SELECT * FROM materia WHERE estado = 1 AND "
+                + "idMateria NOT IN (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
 
-        List<Inscripcion> InMat = new ArrayList<Inscripcion>();
+        List<Materia> InMat = new ArrayList<Materia>();
         try {
             PreparedStatement InMatpsq = con.prepareStatement(sqlInMat);
-            InMatpsq.setInt(1, idMateria);
+            InMatpsq.setInt(1, idAlumno);
             ResultSet rS = InMatpsq.executeQuery();
 
-            Inscripcion inscripcion;
+            Materia materia;
 
             while (rS.next()) {
-                inscripcion = new Inscripcion();
+                materia = new Materia();
                 
-                inscripcion.setIdInscripcion(rS.getInt("idInscripcion"));
-                Alumno Alum = ad.buscarAlumno(rS.getInt("idAlumno"));
-                Materia Mater = md.buscarMateria(rS.getInt("idMateria"));
-                
-                inscripcion.setAlumno(Alum);
-                inscripcion.setMateria(Mater);
-                inscripcion.setNota(rS.getDouble("nota"));
-                
-                InMat.add(inscripcion);
+                materia.setIdMateria(rS.getInt("idMateria"));           
+                materia.setNombre(rS.getString("nombre"));
+                materia.setAnioMateria(rS.getInt("anioMateria"));
+                materia.setEstado(true);
+                InMat.add(materia);
             }
             InMatpsq.close();
 
@@ -173,8 +167,8 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, "No se encontro lista de Inscripcion" + ex.getMessage());
         }
         return InMat;
-    }
-        
+    }   
+     
         
         
         

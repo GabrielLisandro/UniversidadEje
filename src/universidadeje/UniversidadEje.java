@@ -69,14 +69,14 @@ public class UniversidadEje {
                                       Insc.getAlumno().getApellido()+"\n"+ Insc.getNota()+"\n");  
           }*/
         
-      /*  for (Inscripcion Insc : Inscrip.listaInscrPorMater(1)){
-        JOptionPane.showMessageDialog(null, Insc.getIdInscripcion()+"\n"+ Insc.getMateria()+"\n"+
-                                      Insc.getAlumno().getApellido()+"\n"+ Insc.getNota()+"\n");
-    }*/
+     /*  for (Materia Insc : Inscrip.obtenerMateriaCursadas(8)){
+        JOptionPane.showMessageDialog(null, Insc.getIdMateria()+"\n"+ Insc.getNombre()+"\n"+
+                                     Insc.getAnioMateria()+"\n");*/
+    
         
-        for (Inscripcion Insc : Inscrip.listaInscrPorMaterNoCursadas(1)){
-        JOptionPane.showMessageDialog(null, Insc.getIdInscripcion()+"\n"+ Insc.getMateria()+"\n"+
-                                      Insc.getAlumno().getApellido()+"\n"+ Insc.getNota()+"\n");
+      for (Materia Insc : Inscrip.obtenerMateriaNoCursadas(1)){
+        JOptionPane.showMessageDialog(null, Insc.getIdMateria()+"\n"+ Insc.getNombre()+"\n"+
+                                     Insc.getAnioMateria()+"\n");
     }
         
         
