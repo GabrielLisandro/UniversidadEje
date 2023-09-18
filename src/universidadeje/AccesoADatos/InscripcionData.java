@@ -255,7 +255,7 @@ public class InscripcionData {
     }
     
     
-    psAluMat.close();
+    psAluMat.close(); 
        
     }catch(SQLException ex){
         JOptionPane.showMessageDialog(null, "No se pudo realizar la lista" + ex.getMessage());

@@ -84,9 +84,12 @@ public class UniversidadEje {
       //Inscrip.actualizarNota(8, 2, 8.5);
    
     
-        for (Alumno aluMat: Inscrip.obtenerAlumnoPorMateria(1)) {
+      /*  for (Alumno aluMat: Inscrip.obtenerAlumnoPorMateria(2)) {
             JOptionPane.showMessageDialog(null,aluMat.getApellido() + "\n" + aluMat.getNombre() + "\n"
-                    + aluMat.getDni() + "\n"); 
+                    + aluMat.getDni() + "\n"); */
+      
+      
+            
              
         }
             
