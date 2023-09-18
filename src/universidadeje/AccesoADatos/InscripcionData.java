@@ -1,5 +1,6 @@
 package universidadeje.AccesoADatos;
 
+import static java.awt.event.PaintEvent.UPDATE;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -8,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import universidadeje.Entidades.Alumno;
 import universidadeje.Entidades.Inscripcion;
@@ -185,22 +188,71 @@ public class InscripcionData {
             if (supr > 0) {
                 
                 JOptionPane.showMessageDialog(null, "Se elimino excitosamente la Inscripcion");
-                
             }
             elimin.close();
-            
-            
-            
+           
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo eliminar la Inscripcion");
         }
+    }
+    
+    public void actualizarNota(int idAlumno, int idMateria, double nota){
+    String sqlNota = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ?";
+    
+        try {
+            PreparedStatement psNota = con.prepareStatement(sqlNota);
+            
+            psNota.setDouble(1, nota);
+            psNota.setInt(2, idAlumno);
+            psNota.setInt(3, idMateria);
+            
+            int rest = psNota.executeUpdate();
+            
+            if (rest>0){
+            JOptionPane.showMessageDialog(null, "¡Nota Modificada!");
+            
+            }else{
+            JOptionPane.showMessageDialog(null, "No se pudo hacer la modificación");
+            }
+                
+            psNota.close();
+            
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "No se pudo hacer la modificación" + ex.getMessage());
+        }
+        
+   }
+    
+    public List<Alumno> obtenerAlumnoPorMateria (int idMateria){
+    
+        ArrayList <Alumno> aluMat = new ArrayList<>();
+        
+    String sqlMat = "SELEC * FROM inscripcion, alumno "
+            + "WHERE inscripcion.idAlumno = alumno.idAlumno AND idMateria = ? AND estado = 1";
+    
+    try{
+    PreparedStatement psAluMat = con.prepareStatement(sqlMat);
+    
+    psAluMat.setInt(1, idMateria);
+    ResultSet rs = psAluMat.executeQuery();
+    
+    while (rs.next()){
+    
+        aluMat = new Alumno;
+    
+    }
     
     
-        
-        
-        
-}
+    psAluMat.close();
        
+    }catch(SQLException ex){
+        JOptionPane.showMessageDialog(null, "No se pudo realizar la lista" + ex.getMessage());
+   }
+    return aluMat;
+    }
+    
 }
+      
+
 
 
