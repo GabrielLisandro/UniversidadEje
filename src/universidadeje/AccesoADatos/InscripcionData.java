@@ -227,7 +227,7 @@ public class InscripcionData {
     
         ArrayList <Alumno> aluMat = new ArrayList<>();
         
-    String sqlMat = "SELEC * FROM inscripcion, alumno "
+    String sqlMat = "SELECT * FROM inscripcion, alumno "
             + "WHERE inscripcion.idAlumno = alumno.idAlumno AND idMateria = ? AND estado = 1";
     
     try{
@@ -236,10 +236,22 @@ public class InscripcionData {
     psAluMat.setInt(1, idMateria);
     ResultSet rs = psAluMat.executeQuery();
     
+    Alumno alumno;
+    
     while (rs.next()){
     
-        aluMat = new Alumno;
-    
+        alumno = new Alumno();
+        
+        alumno.setIdAlumno(rs.getInt("idAlumno"));
+        alumno.setApellido(rs.getString("apellido"));
+        alumno.setNombre(rs.getString("nombre"));
+        alumno.setDni(rs.getInt("dni"));
+        alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+        alumno.setEstado(true);
+        
+        aluMat.add(alumno);
+        
+           
     }
     
     
