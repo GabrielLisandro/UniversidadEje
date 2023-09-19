@@ -14,14 +14,14 @@ public class UniversidadEje {
     public static void main(String[] args) {
 
         //Alumno alumnonuevo = new Alumno(35124784, "Bermudez", "Carolina", LocalDate.of(1987, 05, 07), true);
-        AlumnoData alumno = new AlumnoData();
+        /*AlumnoData alumno = new AlumnoData();*/
         
         //alumno.guardarAlumno(alumnonuevo);
         
         //alumno.buscarAlumno(1);
-        //Alumno alumnoEncontrado;
-        //alumnoEncontrado = alumno.buscarAlumnoDni(35124784);
-        //JOptionPane.showMessageDialog(null,alumnoEncontrado.toString());
+        /*Alumno alumnoEncontrado;
+        alumnoEncontrado = alumno.buscarAlumnoDni(35124784);
+        JOptionPane.showMessageDialog(null,alumnoEncontrado.toString());*/
 
         /*for (Alumno alum : alumno.listaAlumno()) {
            JOptionPane.showMessageDialog(null, alum.getDni()+"\n"+alum.getApellido()+"\n"+
@@ -35,7 +35,7 @@ public class UniversidadEje {
          */
         
      /* Materia materia =new Materia(3, "Matematica", 1, true);*/
-        MateriaData mater = new MateriaData();
+       /* MateriaData mater = new MateriaData();*/
     /*  mater.guardarMateria(materia);*/
 
      /* mater.buscarMateria(3);
@@ -52,11 +52,11 @@ public class UniversidadEje {
    
      // mater.eliminarMateria(2); 
      
-        Alumno Mariano = alumno.buscarAlumno(9);
+       /* Alumno Mariano = alumno.buscarAlumno(9);
         Materia Quimica = mater.buscarMateria(3);
 
         Inscripcion ins = new Inscripcion(Quimica, Mariano, 9);
-        InscripcionData Inscrip = new InscripcionData();
+        InscripcionData Inscrip = new InscripcionData();*/
         //Inscrip.guarInscripcion(ins);
 
         /* for (Inscripcion Insc : Inscrip.listaInscripcion()) {
