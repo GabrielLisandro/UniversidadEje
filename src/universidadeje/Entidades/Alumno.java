@@ -3,10 +3,6 @@ package universidadeje.Entidades;
 
 import java.time.LocalDate;
 
-/**
- *
- * @author kamar
- */
 public class Alumno {
     
     private int idAlumno;

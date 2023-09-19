@@ -36,28 +36,26 @@ public class MateriaData {
 
             guarMateriaPs.executeUpdate();
             ResultSet rs = guarMateriaPs.getGeneratedKeys();
+            
             if (rs.next()) {
                 materia.setIdMateria(rs.getInt(1));
 
                 JOptionPane.showMessageDialog(null, "Materia Ingresada");
-
             }
             guarMateriaPs.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error la materia no fue Ingresada " + ex.getMessage());
-                             
-        
         }
-
-        
-        
     }
     
-     
+    
     public Materia buscarMateria(int id) {
+        
         String buscarMaterSql = "SELECT `nombre`, `aniomateria`, `estado` FROM `materia` WHERE idMateria = ? AND estado = true";
+        
         Materia materia = null;
+        
         try {
 
             PreparedStatement buscarMateriaPs = con.prepareStatement(buscarMaterSql);
@@ -72,9 +70,7 @@ public class MateriaData {
                 materia.setEstado(true);
 
             } else {
-
-                JOptionPane.showMessageDialog(null, "No se encontro la Materia");
-
+                    JOptionPane.showMessageDialog(null, "No se encontro la Materia");
             }
             buscarMateriaPs.close();
 
@@ -82,11 +78,11 @@ public class MateriaData {
             JOptionPane.showMessageDialog(null, "Error en la busqueda de la Materia " + ex.getMessage());
         }
         return materia;
-
     }
       
      
      public List<Materia> listaMateria() {
+         
         String sql = "SELECT * FROM materia WHERE estado = 1";
 
         List<Materia> mater = new ArrayList<Materia>();
@@ -111,7 +107,6 @@ public class MateriaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se encontro la lista de materias" + ex.getMessage());
         }
-
         return mater;
     }
      
@@ -119,6 +114,7 @@ public class MateriaData {
      public void modificarMateria(Materia materia) {
 
         String sql = "UPDATE materia SET nombre=?, anioMateria=? WHERE idMateria=?";
+        
         try {
             PreparedStatement my = con.prepareStatement(sql);
             
@@ -130,6 +126,7 @@ public class MateriaData {
 
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Modification exitosa");
+                
             } else {
                 JOptionPane.showMessageDialog(null, "La Materia no exite");
             }
@@ -141,7 +138,9 @@ public class MateriaData {
      
      
      public void eliminarMateria(int id) {
+         
         String mysql = "UPDATE materia SET estado=0 WHERE idMateria =?";
+        
         try {
             PreparedStatement fr = con.prepareStatement(mysql);
             fr.setInt(1, id);
@@ -149,11 +148,11 @@ public class MateriaData {
             
             if (filas==1) {
                 JOptionPane.showMessageDialog(null, "Materia Eliminada.");
+                
             }else{JOptionPane.showMessageDialog(null, "No se pudo Eliminar la Materia");}
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al modificar el estado" + ex.getMessage());
-
         }
-     
-     }
+    }
 }

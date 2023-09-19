@@ -27,6 +27,7 @@ public class InscripcionData {
     }
 
     public void guarInscripcion(Inscripcion ins) {
+        
         String guarInscripSql = "INSERT INTO `inscripcion`(`idMateria`, `idAlumno`, `nota`)"
                 + "VALUES (?,?,?)";
 
@@ -39,6 +40,7 @@ public class InscripcionData {
 
             guarInscripPs.executeUpdate();
             ResultSet rs = guarInscripPs.getGeneratedKeys();
+            
             if (rs.next()) {
                 ins.setIdInscripcion(rs.getInt(1));
 
@@ -50,15 +52,17 @@ public class InscripcionData {
             guarInscripPs.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al conectarse en Inscripcion " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al conectarse en Inscripcion: " + ex.getMessage());
         }
     }
 
         
      public List<Inscripcion> listaInscripcion() {
+         
         String qer = "SELECT * FROM Inscripcion ";
 
         List<Inscripcion> Inscr = new ArrayList<Inscripcion>();
+        
         try {
             PreparedStatement psq = con.prepareStatement(qer);
             ResultSet setr = psq.executeQuery();
@@ -79,15 +83,18 @@ public class InscripcionData {
             psq.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se encontro lista de Inscripcion" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al conectarse con Inscripcion: " + ex.getMessage());
         }
         return Inscr;
     }   
         
+     
      public List<Inscripcion> listaInscrPorAlum(int idAlumno) {
+         
         String qer = "SELECT * FROM Inscripcion WHERE idAlumno = ? ";
 
         List<Inscripcion> Inscr = new ArrayList<Inscripcion>();
+        
         try {
             PreparedStatement psq = con.prepareStatement(qer);
             psq.setInt(1, idAlumno);
@@ -109,16 +116,19 @@ public class InscripcionData {
             psq.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se encontro lista de Inscripcion" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al conectarse con Inscripcion: " + ex.getMessage());
         }
         return Inscr;
     }   
      
+     
     public List<Materia> obtenerMateriaCursadas(int idAlumno) {
+        
         String sqlInMat = "SELECT inscripcion.idMateria , nombre , anioMateria FROM inscripcion, materia "
                 + "WHERE inscripcion.idMateria = materia.idMateria AND inscripcion.idAlumno = ?";
 
         List<Materia> InMat = new ArrayList<Materia>();
+        
         try {
             PreparedStatement InMatpsq = con.prepareStatement(sqlInMat);
             InMatpsq.setInt(1, idAlumno);
@@ -128,26 +138,29 @@ public class InscripcionData {
 
             while (rS.next()) {
                 materia = new Materia();
-                
                 materia.setIdMateria(rS.getInt("idMateria"));           
                 materia.setNombre(rS.getString("nombre"));
                 materia.setAnioMateria(rS.getInt("anioMateria"));
                 materia.setEstado(true);
+                
                 InMat.add(materia);
             }
             InMatpsq.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se encontro lista de Inscripcion" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al conectarse con Inscripcion: " + ex.getMessage());
         }
         return InMat;
     }   
      
+    
         public List<Materia> obtenerMateriaNoCursadas(int idAlumno) {
+            
         String sqlInMat = "SELECT * FROM materia WHERE estado = 1 AND "
                 + "idMateria NOT IN (SELECT idMateria FROM inscripcion WHERE idAlumno = ?)";
 
         List<Materia> InMat = new ArrayList<Materia>();
+        
         try {
             PreparedStatement InMatpsq = con.prepareStatement(sqlInMat);
             InMatpsq.setInt(1, idAlumno);
@@ -167,12 +180,12 @@ public class InscripcionData {
             InMatpsq.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se encontro lista de Inscripcion" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al conectarse con Inscripcion: " + ex.getMessage());
         }
         return InMat;
-       
     }   
      
+        
     public void eliminarInscripcion(int idMateria, int idAlumno) {
     
         String elim = "DELETE FROM `inscripcion` WHERE idMateria = ? AND idAlumno = ?";
@@ -186,17 +199,20 @@ public class InscripcionData {
             int supr = elimin.executeUpdate();
             
             if (supr > 0) {
-                
                 JOptionPane.showMessageDialog(null, "Se elimino excitosamente la Inscripcion");
+            
+            }else{
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar la Inscripcion");
             }
             elimin.close();
            
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se pudo eliminar la Inscripcion");
+            JOptionPane.showMessageDialog(null, "Error al eliminar la Inscripcion: "+ ex.getMessage());
         }
     }
     
     public void actualizarNota(int idAlumno, int idMateria, double nota){
+        
     String sqlNota = "UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ?";
     
         try {
@@ -214,14 +230,13 @@ public class InscripcionData {
             }else{
             JOptionPane.showMessageDialog(null, "No se pudo hacer la modificación");
             }
-                
             psNota.close();
             
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "No se pudo hacer la modificación" + ex.getMessage());
+           JOptionPane.showMessageDialog(null, "Error al hacer la modificación: " + ex.getMessage());
         }
-        
-   }
+}
+    
     
     public List<Alumno> obtenerAlumnoPorMateria (int idMateria){
     
@@ -250,19 +265,14 @@ public class InscripcionData {
         alumno.setEstado(true);
         
         aluMat.add(alumno);
-        
-           
     }
-    
-    
     psAluMat.close(); 
        
     }catch(SQLException ex){
-        JOptionPane.showMessageDialog(null, "No se pudo realizar la lista" + ex.getMessage());
-   }
+        JOptionPane.showMessageDialog(null, "Error al conectarse: " + ex.getMessage());
+    }
     return aluMat;
     }
-    
 }
       
 

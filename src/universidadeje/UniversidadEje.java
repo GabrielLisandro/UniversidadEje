@@ -72,34 +72,22 @@ public class UniversidadEje {
      /*  for (Materia Insc : Inscrip.obtenerMateriaCursadas(8)){
         JOptionPane.showMessageDialog(null, Insc.getIdMateria()+"\n"+ Insc.getNombre()+"\n"+
                                      Insc.getAnioMateria()+"\n");*/
-    
-        
+           
       /*for (Materia Insc : Inscrip.obtenerMateriaNoCursadas(1)){
         JOptionPane.showMessageDialog(null, Insc.getIdMateria()+"\n"+ Insc.getNombre()+"\n"+
                                      Insc.getAnioMateria()+"\n");*/
-      
       
       //Inscrip.eliminarInscripcion (2, 1);
       
       //Inscrip.actualizarNota(8, 2, 8.5);
    
-    
-      /*  for (Alumno aluMat: Inscrip.obtenerAlumnoPorMateria(2)) {
+    /*  for (Alumno aluMat: Inscrip.obtenerAlumnoPorMateria(2)) {
             JOptionPane.showMessageDialog(null,aluMat.getApellido() + "\n" + aluMat.getNombre() + "\n"
                     + aluMat.getDni() + "\n"); */
-      
-      
-            
-             
-        }
-            
-        
-      
-      
-    
     
     }
+}
         
         
-  }
+  
 
