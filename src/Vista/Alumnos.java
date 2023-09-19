@@ -163,7 +163,7 @@ public class Alumnos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDfechanac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBeliminar)
                     .addComponent(jBguardar)
@@ -204,8 +204,13 @@ public class Alumnos extends javax.swing.JInternalFrame {
             jDfechanac.setDate(java.sql.Date.valueOf(alumnoBuscado.getFechaNacimiento()));
             
             activarBotones();
-        
-        
+        } else {
+            jTdni.setText("");
+            jTdni.requestFocus();
+            jTapellido.setText("");
+            jTnombre.setText("");
+            jRestado.setSelected(false);
+            jDfechanac.setDate(null);
         }
         
     }//GEN-LAST:event_jBbuscarActionPerformed
@@ -229,4 +234,10 @@ public class Alumnos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTdni;
     private javax.swing.JTextField jTnombre;
     // End of variables declaration//GEN-END:variables
+
+private void activarBotones(){
+    jBeliminar.setEnabled(true);
+    jBguardar.setEnabled(true);
+}
+ 
 }
