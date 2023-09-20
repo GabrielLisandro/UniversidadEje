@@ -195,5 +195,35 @@ public class AlumnoData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al modificar estado: " + ex.getMessage());
         }
+        
+       
     }
-}
+
+    
+    public void eliminarAlumnodni(int dni) {
+        
+        String mysql = "UPDATE alumno SET estado=0 WHERE dni =?";
+        
+        try {
+            PreparedStatement fr = con.prepareStatement(mysql);
+            fr.setInt(1, dni);
+            int filas=fr.executeUpdate();
+            
+            if (filas==1) {
+                JOptionPane.showMessageDialog(null, "Alumno eliminado");
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "No se pudo eliminar al Alumno");}
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al modificar estado: " + ex.getMessage());
+        }
+
+
+
+
+
+
+    }
+
+    }

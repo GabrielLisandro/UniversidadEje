@@ -14,7 +14,7 @@ public class UniversidadEje {
     public static void main(String[] args) {
 
         //Alumno alumnonuevo = new Alumno(35124784, "Bermudez", "Carolina", LocalDate.of(1987, 05, 07), true);
-        /*AlumnoData alumno = new AlumnoData();*/
+        AlumnoData alumno = new AlumnoData();
         
         //alumno.guardarAlumno(alumnonuevo);
         
@@ -32,7 +32,9 @@ public class UniversidadEje {
         alumno.modificarAlumno(alumnonuevo);
         
         alumno.eliminarAlumno(2);
-         */
+                */
+        
+        alumno.eliminarAlumnodni(36123554);
         
      /* Materia materia =new Materia(3, "Matematica", 1, true);*/
        /* MateriaData mater = new MateriaData();*/

@@ -76,6 +76,11 @@ public class Alumnos extends javax.swing.JInternalFrame {
 
         jBeliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBeliminar.setText("Eliminar");
+        jBeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBeliminarActionPerformed(evt);
+            }
+        });
 
         jBguardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBguardar.setText("Guardar");
@@ -90,6 +95,11 @@ public class Alumnos extends javax.swing.JInternalFrame {
 
         jBnuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBnuevo.setText("Nuevo");
+        jBnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBnuevoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,7 +186,7 @@ public class Alumnos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-       System.exit(0);
+       dispose();
        
        
        
@@ -214,6 +224,43 @@ public class Alumnos extends javax.swing.JInternalFrame {
         }
         
     }//GEN-LAST:event_jBbuscarActionPerformed
+
+    private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
+        
+        jTdni.setText("");
+        jTapellido.setText("");
+        jTnombre.setText("");
+        jRestado.setSelected(false);
+        jDfechanac.setDate(null);
+        
+        
+        
+    }//GEN-LAST:event_jBnuevoActionPerformed
+
+    private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
+        
+        try {
+            int dni = Integer.parseInt(jTdni.getText());
+            
+            if (jTdni.getText()!=null) {
+                alumnodata.eliminarAlumnodni(dni);
+                
+            }
+        jTdni.setText("");
+        jTapellido.setText("");
+        jTnombre.setText("");
+        jRestado.setSelected(false);
+        jDfechanac.setDate(null);
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+            
+        }
+        
+        
+        
+    }//GEN-LAST:event_jBeliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
