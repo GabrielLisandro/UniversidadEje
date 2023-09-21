@@ -5,11 +5,14 @@
  */
 package Vista;
 
+import java.sql.Date;
 import java.time.ZoneId;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import universidadeje.AccesoADatos.AlumnoData;
 import universidadeje.Entidades.Alumno;
-
+import java.time.LocalDate;
+import java.time.ZoneId;
 /**
  *
  * @author Usuario
@@ -84,6 +87,11 @@ public class Alumnos extends javax.swing.JInternalFrame {
 
         jBguardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBguardar.setText("Guardar");
+        jBguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBguardarActionPerformed(evt);
+            }
+        });
 
         jBsalir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBsalir.setText("Salir");
@@ -195,18 +203,7 @@ public class Alumnos extends javax.swing.JInternalFrame {
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
       
         Alumno alumnoBuscado = alumnodata.buscarAlumnoDni(Integer.parseInt(jTdni.getText()));
-      
-        /*/try {
-            alumnoBuscado.setApellido(jTapellido.getText());
-            alumnoBuscado.setNombre(jTnombre.getText());
-            alumnoBuscado.setFechaNacimiento(jDfechanac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            alumnoBuscado.setEstado(jRestado.isSelected());
-            
-            alumnodata.modificarAlumno(alumnoBuscado);
-        
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this , "El DNI no correspondo a un alumno");*/
-        
+                     
         if (alumnoBuscado != null) {
             jTapellido.setText(alumnoBuscado.getApellido());
             jTnombre.setText(alumnoBuscado.getNombre());
@@ -262,6 +259,37 @@ public class Alumnos extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jBeliminarActionPerformed
 
+    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
+        
+       int dni = Integer.parseInt(jTdni.getText());
+    String apellido = jTapellido.getText();
+    String nombre = jTnombre.getText();
+    boolean estado = jRestado.isSelected();
+    LocalDate fechaNacimiento = jDfechanac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+    // Crear un objeto Alumno con los datos ingresados
+    Alumno nuevoAlumno = new Alumno(dni, apellido, nombre, fechaNacimiento, estado);
+
+    // Llamar al método para guardar el alumno en la base de datos
+    alumnodata.guardarAlumno(nuevoAlumno);
+
+    // Limpiar los campos después de guardar
+    jTdni.setText("");
+    jTapellido.setText("");
+    jTnombre.setText("");
+    jRestado.setSelected(false);
+    jDfechanac.setDate(null);
+
+    // Opcional: mostrar un mensaje de confirmación
+    JOptionPane.showMessageDialog(this, "Alumno guardado exitosamente.");
+        
+        
+        
+       
+        
+    }//GEN-LAST:event_jBguardarActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBbuscar;
