@@ -158,11 +158,23 @@ public class Materia extends javax.swing.JInternalFrame {
 
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
        
+            universidadeje.Entidades.Materia materiaBuscada = materiaBus.buscarMateria(Integer.parseInt(jTcodigo.getText()));
+       
+        if (materiaBuscada != null) {
+            jTnombre.setText(materiaBuscada.getNombre());
+            jTanio.setText(Integer(materiaBuscada.getAnioMateria()));
+            jRestado.setSelected(true);
+            
+            activarBotones();
+            
+        } else {
+            jTnombre.setText("");
+            jTanio.setText("");
+            jRestado.setSelected(false);
+           
+        }
         
-        
-        Materia materiaBuscada = materiaBus.buscarMateria(Integer.parseInt(jTcodigo.getText()));
-        
-        
+    
         
         
         
@@ -192,4 +204,15 @@ public class Materia extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTcodigo;
     private javax.swing.JTextField jTnombre;
     // End of variables declaration//GEN-END:variables
+
+    private String Integer(int anioMateria) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+private void activarBotones(){
+    jBeliminar.setEnabled(true);
+    jBguardar.setEnabled(true);
+}
+
+
 }
