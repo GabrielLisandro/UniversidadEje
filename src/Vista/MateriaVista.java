@@ -4,19 +4,21 @@
  */
 package Vista;
 
+import javax.swing.JOptionPane;
 import universidadeje.AccesoADatos.MateriaData;
-
+import universidadeje.Entidades.Materia;
 /**
  *
  * @author sucom
  */
-public class Materia extends javax.swing.JInternalFrame {
+public class MateriaVista extends javax.swing.JInternalFrame {
 
-        MateriaData materiaBus = new MateriaData();
+    MateriaData materiadata = new MateriaData();
+
     /**
      * Creates new form Materia
      */
-    public Materia() {
+    public MateriaVista() {
         initComponents();
     }
 
@@ -58,11 +60,21 @@ public class Materia extends javax.swing.JInternalFrame {
 
         jBeliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBeliminar.setText("Eliminar");
+        jBeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBeliminarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Codigo:");
 
         jBguardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBguardar.setText("Guardar");
+        jBguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBguardarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nombre:");
 
@@ -76,6 +88,11 @@ public class Materia extends javax.swing.JInternalFrame {
 
         jBnuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBnuevo.setText("Nuevo");
+        jBnuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBnuevoActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Estado");
 
@@ -157,35 +174,101 @@ public class Materia extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
-       
-            universidadeje.Entidades.Materia materiaBuscada = materiaBus.buscarMateria(Integer.parseInt(jTcodigo.getText()));
-       
+
+        Materia materiaBuscada = materiadata.buscarMateria(Integer.parseInt(jTcodigo.getText()));
+
         if (materiaBuscada != null) {
             jTnombre.setText(materiaBuscada.getNombre());
-            jTanio.setText(Integer(materiaBuscada.getAnioMateria()));
+            jTanio.setText(materiaBuscada.getAnioMateria()+ "");
             jRestado.setSelected(true);
-            
+
             activarBotones();
-            
+
         } else {
             jTnombre.setText("");
             jTanio.setText("");
             jRestado.setSelected(false);
-           
+
         }
-        
-    
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_jBbuscarActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-      dispose();
-      
+        dispose();
+
     }//GEN-LAST:event_jBsalirActionPerformed
+
+    private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
+
+        
+        
+        jTcodigo.setText("");
+        jTnombre.setText("");
+        jTanio.setText("");
+        jRestado.setSelected(false);
+
+
+    }//GEN-LAST:event_jBnuevoActionPerformed
+
+    private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
+       
+        
+        try {
+            int codigo = Integer.parseInt(jTcodigo.getText());
+            
+            if (jTcodigo.getText()!=null) {
+                materiadata.eliminarMateria(codigo);
+                
+            }
+        jTcodigo.setText("");
+        jTnombre.setText("");
+        jTanio.setText("");
+        jRestado.setSelected(false);
+        
+            
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Error: " + e);
+            
+        }
+    }//GEN-LAST:event_jBeliminarActionPerformed
+
+    private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
+        
+                                                
+        
+       int codigo = Integer.parseInt(jTcodigo.getText());    
+    String nombre = jTnombre.getText();
+    int anioMateria = Integer.parseInt(jTanio.getText());
+    boolean estado = jRestado.isSelected();
+    
+
+    // Crear un objeto Materia con los datos ingresados
+    Materia nuevaMateria = new Materia(codigo,nombre,anioMateria,estado);
+
+    // Llamar al método para guardar el alumno en la base de datos
+    materiadata.guardarMateria(nuevaMateria);
+            
+    // Limpiar los campos después de guardar
+    jTcodigo.setText("");
+    jTnombre.setText("");
+    jTanio.setText("");
+    jRestado.setSelected(false);
+    
+
+    // Opcional: mostrar un mensaje de confirmación
+    JOptionPane.showMessageDialog(this, "Materia guardada exitosamente.");
+        
+        
+        
+       
+        
+                                        
+        
+        
+        
+    }//GEN-LAST:event_jBguardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -205,14 +288,10 @@ public class Materia extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTnombre;
     // End of variables declaration//GEN-END:variables
 
-    private String Integer(int anioMateria) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    private void activarBotones() {
+        jBeliminar.setEnabled(true);
+        jBguardar.setEnabled(true);
     }
-
-private void activarBotones(){
-    jBeliminar.setEnabled(true);
-    jBguardar.setEnabled(true);
-}
-
 
 }

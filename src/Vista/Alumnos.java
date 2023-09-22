@@ -76,6 +76,11 @@ public class Alumnos extends javax.swing.JInternalFrame {
         });
 
         jRestado.setText("Activo");
+        jRestado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRestadoActionPerformed(evt);
+            }
+        });
 
         jBeliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBeliminar.setText("Eliminar");
@@ -288,6 +293,10 @@ public class Alumnos extends javax.swing.JInternalFrame {
        
         
     }//GEN-LAST:event_jBguardarActionPerformed
+
+    private void jRestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRestadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRestadoActionPerformed
 
     
 
