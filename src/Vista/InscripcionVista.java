@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package Vista;
 
 import java.util.ArrayList;
@@ -10,10 +7,7 @@ import universidadeje.AccesoADatos.AlumnoData;
 import universidadeje.AccesoADatos.InscripcionData;
 import universidadeje.AccesoADatos.MateriaData;
 import universidadeje.Entidades.*;
-/**
- *
- * @author sucom
- */
+
 public class InscripcionVista extends javax.swing.JInternalFrame {
 
     
@@ -38,8 +32,11 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
     aData = new AlumnoData();
     listaA = (ArrayList<Alumno>) aData.listaAlumno();
     modelo = new DefaultTableModel();
-    CargaAlumnos();
+    inscData = new InscripcionData();
+    mData = new MateriaData();
     
+   // CargaAlumnos();
+    armarCabeceraTabla();
     
     
     
@@ -78,6 +75,7 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
 
         jBinscribir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBinscribir.setText("Inscribir");
+        jBinscribir.setEnabled(false);
         jBinscribir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBinscribirActionPerformed(evt);
@@ -91,11 +89,10 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
 
         jBanular.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jBanular.setText("Anular Inscripcion");
+        jBanular.setEnabled(false);
 
         jLabel7.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         jLabel7.setText("Listado de Materias");
-
-        jCalumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jRinscriptas.setText("Materias Inscriptas");
         jRinscriptas.addActionListener(new java.awt.event.ActionListener() {
@@ -201,12 +198,28 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jRinscriptasActionPerformed
 
+    private void cargaAlumnos(){
+        for (Alumno item: listaA) {
+            jCalumnos.addItem(item);
+            
+        }
+    }
+    
+    private void armarCabeceraTabla(){
+        ArrayList<Object> filaCabecera = new ArrayList<>();
+        filaCabecera.add("ID");
+        filaCabecera.add("Nombre");
+        filaCabecera.add("Año");
+        for (Object it : filaCabecera) {
+            
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBanular;
     private javax.swing.JButton jBinscribir;
     private javax.swing.JButton jBsalir;
-    private javax.swing.JComboBox<String> jCalumnos;
+    private javax.swing.JComboBox<Alumno> jCalumnos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
