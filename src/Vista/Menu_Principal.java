@@ -21,7 +21,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         jMformMat = new javax.swing.JMenu();
         jMforMateria = new javax.swing.JMenuItem();
         jMinscripciones = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        jMInscripciones = new javax.swing.JMenuItem();
         jMnotas = new javax.swing.JMenuItem();
         jMalumxmat = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -72,8 +72,13 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         jMinscripciones.setText("Administración");
 
-        jMenuItem3.setText("Manejo de Inscripciones");
-        jMinscripciones.add(jMenuItem3);
+        jMInscripciones.setText("Manejo de Inscripciones");
+        jMInscripciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMInscripcionesActionPerformed(evt);
+            }
+        });
+        jMinscripciones.add(jMInscripciones);
 
         jMnotas.setText("Manipulación de Notas");
         jMinscripciones.add(jMnotas);
@@ -131,6 +136,15 @@ public class Menu_Principal extends javax.swing.JFrame {
         escritorio.moveToFront(bps);
     }//GEN-LAST:event_jMforMateriaActionPerformed
 
+    private void jMInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMInscripcionesActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        InscripcionVista bps = new InscripcionVista();
+        bps.setVisible(true);
+        escritorio.add(bps);
+        escritorio.moveToFront(bps);
+    }//GEN-LAST:event_jMInscripcionesActionPerformed
+
     
     public static void main(String args[]) {
         
@@ -166,10 +180,10 @@ public class Menu_Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JMenuItem jMInscripciones;
     private javax.swing.JMenu jMalumno;
     private javax.swing.JMenu jMalumxmat;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMforMateria;
     private javax.swing.JMenuItem jMformAlum;
