@@ -104,6 +104,12 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         jLabel7.setText("Listado de Materias");
 
+        jCalumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCalumnosActionPerformed(evt);
+            }
+        });
+
         jRinscriptas.setText("Materias Inscriptas");
         jRinscriptas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,6 +261,10 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         
         }
     }//GEN-LAST:event_jBanularActionPerformed
+
+    private void jCalumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCalumnosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCalumnosActionPerformed
 
     private void cargaAlumnos(){
         for (Alumno item: listaA) {

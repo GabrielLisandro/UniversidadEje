@@ -81,6 +81,11 @@ public class Menu_Principal extends javax.swing.JFrame {
         jMinscripciones.add(jMInscripciones);
 
         jMnotas.setText("Manipulación de Notas");
+        jMnotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnotasActionPerformed(evt);
+            }
+        });
         jMinscripciones.add(jMnotas);
 
         jMenuBar1.add(jMinscripciones);
@@ -144,6 +149,15 @@ public class Menu_Principal extends javax.swing.JFrame {
         escritorio.add(bps);
         escritorio.moveToFront(bps);
     }//GEN-LAST:event_jMInscripcionesActionPerformed
+
+    private void jMnotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnotasActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        CargaDeNotas bps = new CargaDeNotas();
+        bps.setVisible(true);
+        escritorio.add(bps);
+        escritorio.moveToFront(bps);
+    }//GEN-LAST:event_jMnotasActionPerformed
 
     
     public static void main(String args[]) {
