@@ -24,7 +24,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         jMInscripciones = new javax.swing.JMenuItem();
         jMnotas = new javax.swing.JMenuItem();
         jMalumxmat = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMalumxMat = new javax.swing.JMenuItem();
         jMsalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,13 +91,28 @@ public class Menu_Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMinscripciones);
 
         jMalumxmat.setText("Consultas");
+        jMalumxmat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMalumxmatActionPerformed(evt);
+            }
+        });
 
-        jMenuItem5.setText("Alumnos por Materia");
-        jMalumxmat.add(jMenuItem5);
+        jMalumxMat.setText("Alumnos por Materia");
+        jMalumxMat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMalumxMatActionPerformed(evt);
+            }
+        });
+        jMalumxmat.add(jMalumxMat);
 
         jMenuBar1.add(jMalumxmat);
 
         jMsalir.setText("Salir");
+        jMsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMsalirActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMsalir);
 
         setJMenuBar(jMenuBar1);
@@ -159,6 +174,23 @@ public class Menu_Principal extends javax.swing.JFrame {
         escritorio.moveToFront(bps);
     }//GEN-LAST:event_jMnotasActionPerformed
 
+    private void jMalumxmatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMalumxmatActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        ListadoAlumnoPorMateria lam = new ListadoAlumnoPorMateria();
+        lam.setVisible(true);
+        escritorio.add(lam);
+        escritorio.moveToFront(lam);
+    }//GEN-LAST:event_jMalumxmatActionPerformed
+
+    private void jMsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMsalirActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_jMsalirActionPerformed
+
+    private void jMalumxMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMalumxMatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMalumxMatActionPerformed
+
     
     public static void main(String args[]) {
         
@@ -196,9 +228,9 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenuItem jMInscripciones;
     private javax.swing.JMenu jMalumno;
+    private javax.swing.JMenuItem jMalumxMat;
     private javax.swing.JMenu jMalumxmat;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMforMateria;
     private javax.swing.JMenuItem jMformAlum;
     private javax.swing.JMenu jMformMat;

@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/sucom/OneDrive/Documentos/NetBeansProjects/UniversidadEje/src/Vista/Inscripcion.java</file>
             <file>file:/C:/Users/sucom/OneDrive/Documentos/NetBeansProjects/UniversidadEje/src/Vista/Menu_Principal.java</file>
-            <file>file:/C:/Users/sucom/OneDrive/Documentos/NetBeansProjects/UniversidadEje/src/Vista/Alumnos.java</file>
+            <file>file:/C:/Users/sucom/OneDrive/Documentos/NetBeansProjects/UniversidadEje/src/Vista/InscripcionVista.java</file>
             <file>file:/C:/Users/sucom/OneDrive/Documentos/NetBeansProjects/UniversidadEje/src/Vista/ListadoAlumnoPorMateria.java</file>
             <file>file:/C:/Users/sucom/OneDrive/Documentos/NetBeansProjects/UniversidadEje/src/Vista/CargaDeNotas.java</file>
-            <file>file:/C:/Users/sucom/OneDrive/Documentos/NetBeansProjects/UniversidadEje/src/universidadeje/UniversidadEje.java</file>
-            <file>file:/C:/Users/sucom/OneDrive/Documentos/NetBeansProjects/UniversidadEje/src/Vista/Materia.java</file>
         </group>
     </open-files>
 </project-private>

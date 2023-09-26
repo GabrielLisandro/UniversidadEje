@@ -18,34 +18,33 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
     private MateriaData mData;
     private AlumnoData aData;
     
-    private DefaultTableModel modelo;
+   // private DefaultTableModel modelo;
     
-         
-
+//Creamos una clase interna que sobre escriba un método que se encarga de
+//decidir que celda es editable o no.
+    private DefaultTableModel modelo = new DefaultTableModel (){ 
+//Creamos una nueva clase,que va a extender de TableModel. 
+//Dentro de las llaves vamos a sobre escribir = Clase Anónima (Creo una clase y la instancio)
+    public boolean isCellEditable(int fila, int Columna){
+    return false;
+    }  
+    };
     
     
     public InscripcionVista() {
         initComponents();
     
-
-   
     aData = new AlumnoData();
     listaA = (ArrayList<Alumno>) aData.listaAlumno();
-    modelo = new DefaultTableModel();
+//modelo = new DefaultTableModel();
     inscData = new InscripcionData();
     mData = new MateriaData();
     
     cargaAlumnos();
     armarCabeceraTabla();
-    
-    
-    
-    
     }
     
-            
-    
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked") //unchecked para suprimir avisos relativos a operaciones no comprobadas.
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -128,63 +127,73 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTtabla.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTtablaAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(jTtabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(313, 313, 313)
-                                .addComponent(jBinscribir)
-                                .addGap(38, 38, 38)
-                                .addComponent(jBanular)
-                                .addGap(35, 35, 35)
-                                .addComponent(jBsalir))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCalumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(56, 56, 56)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(jRinscriptas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRnoinscriptas)
-                        .addGap(80, 80, 80)))
-                .addContainerGap(22, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addGap(278, 278, 278))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(278, 278, 278))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(246, 246, 246))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(100, 100, 100)
+                            .addComponent(jRinscriptas)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jRnoinscriptas)
+                            .addGap(77, 77, 77)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(313, 313, 313)
+                            .addComponent(jBinscribir)
+                            .addGap(38, 38, 38)
+                            .addComponent(jBanular)
+                            .addGap(35, 35, 35)
+                            .addComponent(jBsalir))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jCalumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCalumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRinscriptas)
                     .addComponent(jRnoinscriptas))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBanular)
                     .addComponent(jBsalir)
@@ -207,37 +216,28 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
             int anio = (Integer) modelo.getValueAt(filaSeleccionada, 2);
             Materia m = new Materia (idMateria, nombreMateria, anio,true);
             
-            
             Inscripcion in = new Inscripcion(m, a, 0);
             inscData.guarInscripcion(in);
             
             borrarFilasTabla();
-            
-        }
-        
-        
-        
-        
-        
+        }   
     }//GEN-LAST:event_jBinscribirActionPerformed
 
+    
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
         dispose();
     }//GEN-LAST:event_jBsalirActionPerformed
 
+    
     private void jRinscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRinscriptasActionPerformed
         borrarFilasTabla();
         jRnoinscriptas.setSelected(false);
         cargaDatosInscriptas();
         jBanular.setEnabled(true);
         jBinscribir.setEnabled(false);
-        
-        
-        
-        
-        
     }//GEN-LAST:event_jRinscriptasActionPerformed
 
+    
     private void jRnoinscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRnoinscriptasActionPerformed
         borrarFilasTabla();
         jRinscriptas.setSelected(false);
@@ -246,6 +246,7 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         jBinscribir.setEnabled(true);
     }//GEN-LAST:event_jRnoinscriptasActionPerformed
 
+    
     private void jBanularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBanularActionPerformed
         
        int filaSeleccionada = jTtabla.getSelectedRow();
@@ -258,66 +259,69 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
         inscData.eliminarInscripcion(idMateria , a.getIdAlumno());
         
         borrarFilasTabla();
-        
         }
     }//GEN-LAST:event_jBanularActionPerformed
 
+    
     private void jCalumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCalumnosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCalumnosActionPerformed
 
+    private void jTtablaAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTtablaAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTtablaAncestorAdded
+
+    
     private void cargaAlumnos(){
+      
         for (Alumno item: listaA) {
             jCalumnos.addItem(item);
-            
         }
     }
     
+    
     private void armarCabeceraTabla(){
         ArrayList<Object> filaCabecera = new ArrayList<>();
-        filaCabecera.add("ID");
-        filaCabecera.add("Nombre");
-        filaCabecera.add("Año");
+             filaCabecera.add("ID");
+             filaCabecera.add("Nombre");
+             filaCabecera.add("Año");
+        
         for (Object it : filaCabecera) {
             modelo.addColumn(it);
         }
-        jTtabla.setModel(modelo);
+            jTtabla.setModel(modelo);
     }
 
-     private void borrarFilasTabla() {
-         int indice = modelo.getRowCount() -1;
+    
+    private void borrarFilasTabla() {
+        int indice = modelo.getRowCount() -1;
          
-         for (int i = indice; i>=0; i--){
+        for (int i = indice; i>=0; i--){
              modelo.removeRow(i);
-             
-         }   
+        }   
      }
    
-      private void cargaDatosNoInscriptas(){
+     
+    private void cargaDatosNoInscriptas(){
           Alumno selec = (Alumno) jCalumnos.getSelectedItem();
           listaM = (ArrayList) inscData.obtenerMateriaNoCursadas(selec.getIdAlumno());
+         
           for (Materia m: listaM){
               modelo.addRow(new Object[]{m.getIdMateria(),m.getNombre(), m.getAnioMateria()}); 
-              
-              
-          }
-      }
-          private void cargaDatosInscriptas(){
+            }
+        }
+      
+      
+    private void cargaDatosInscriptas(){
             Alumno selec = (Alumno) jCalumnos.getSelectedItem();
-          listaM = (ArrayList) inscData.obtenerMateriaCursadas(selec.getIdAlumno());
+            listaM = (ArrayList) inscData.obtenerMateriaCursadas(selec.getIdAlumno());
+         
           for (Materia m: listaM){
               modelo.addRow(new Object[]{m.getIdMateria(),m.getNombre(), m.getAnioMateria()});   
           }
-          }
+        }
           
-      
-      
-      
-      
-            
-            
-            
-            
+           
                  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBanular;

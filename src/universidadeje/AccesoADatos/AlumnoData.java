@@ -165,10 +165,10 @@ public class AlumnoData {
             int exito = my.executeUpdate();
 
             if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Modification escitosamente.");
+                JOptionPane.showMessageDialog(null, "Modification exitosa.");
                 
             } else {
-                JOptionPane.showMessageDialog(null, "El alumnado no habria de existir.");
+                JOptionPane.showMessageDialog(null, "El alumnado no existe.");
             }
 
         } catch (SQLException ex) {
