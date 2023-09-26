@@ -1,7 +1,7 @@
-
 package Vista;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import universidadeje.AccesoADatos.AlumnoData;
 import universidadeje.AccesoADatos.InscripcionData;
@@ -10,33 +10,32 @@ import universidadeje.Entidades.Alumno;
 import universidadeje.Entidades.Inscripcion;
 import universidadeje.Entidades.Materia;
 
-
 public class CargaDeNotas extends javax.swing.JInternalFrame {
-    
+
     private ArrayList<Materia> listaM;
     private ArrayList<Alumno> listaA;
-    private ArrayList<Inscripcion> listaI;
+    private List<Inscripcion> listaI;
     private MateriaData mData;
     private AlumnoData aData;
     private InscripcionData iData;
-    private DefaultTableModel modelo = new DefaultTableModel (){ 
-    public boolean isCellEditable(int fila, int Columna){
-    return true;
-    }  
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int fila, int Columna) {
+            return false;
+        }
     };
 
     public CargaDeNotas() {
-    iData = new InscripcionData();    
-    aData = new AlumnoData();
-    listaA = (ArrayList<Alumno>)aData.listaAlumno();
-    mData = new MateriaData();
-    Alumno alu = new Alumno();
-    listaI = (ArrayList<Inscripcion>) iData.listaInscrPorAlum(alu.getIdAlumno());
-        
+        iData = new InscripcionData();
+        aData = new AlumnoData();
+        listaA = (ArrayList<Alumno>) aData.listaAlumno();
+        mData = new MateriaData();
+//        Alumno alu = new Alumno();
+//        listaI = (ArrayList<Inscripcion>) iData.listaInscrPorAlum(alu.getIdAlumno());
+
         initComponents();
         cargarAlumnos();
         armarCabeceraTabla();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -141,70 +140,70 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_jBguardarActionPerformed
 
-    
+
     private void jCalumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCalumnosActionPerformed
-       
-           
-       
+
+        mostrarNota();
+
     }//GEN-LAST:event_jCalumnosActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
         dispose();
-        
+
     }//GEN-LAST:event_jBsalirActionPerformed
- private void cargarAlumnos(){
-      for (Alumno item: listaA) {
+    private void cargarAlumnos() {
+        for (Alumno item : listaA) {
             jCalumnos.addItem(item + "");
         }
- }
- 
- 
- 
-  private void armarCabeceraTabla(){
+    }
+
+    private void armarCabeceraTabla() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
-             filaCabecera.add("Código");
-             filaCabecera.add("Nombre");
-             filaCabecera.add("Nota");
-        
+        filaCabecera.add("Código");
+        filaCabecera.add("Nombre");
+        filaCabecera.add("Nota");
+
         for (Object it : filaCabecera) {
             modelo.addColumn(it);
         }
-            jTtabla.setModel(modelo);
+        jTtabla.setModel(modelo);
     }
-  
-  private void mostrarNota(){
-      
-      Alumno alumno = (Alumno) jCalumnos.getSelectedItem();
-      if (alumno != null) {
-          for (Inscripcion inscrip : listaI) {
-              Materia mate = inscrip.getMateria();
-              modelo.addRow(new Object[]){
-              mate.getIdMateria(),
-              mate.getNombre(),
-              inscrip.getNota()
-                      
-              
-              
-          } 
-          }
-          
-      }
-      
-      
-  }
-          
-          
-  
-  
+
+    private void mostrarNota() {
+       borrarFilasTabla();
+    String selectedAlumnoName = (String) jCalumnos.getSelectedItem();
+    if (selectedAlumnoName != null) {
+        for (Alumno alumno : listaA) {
+        
+                List<Inscripcion> listaI = iData.listaInscrPorAlum(alumno.getIdAlumno());
+                for (Inscripcion inscrip : listaI) {
+                    Materia mate = inscrip.getMateria();
+                    modelo.addRow(new Object[]{
+                        mate.getIdMateria(),
+                        mate.getNombre(),
+                        inscrip.getNota()
+                    });
+                }
+                break; // Exit the loop once you find the matching alumno.
+            }
+        
+    }
+
+    }
+
+    private void borrarFilasTabla() {
+        int indice = modelo.getRowCount() - 1;
+
+        for (int i = indice; i >= 0; i--) {
+            modelo.removeRow(i);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBguardar;
