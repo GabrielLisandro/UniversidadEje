@@ -4,8 +4,10 @@ package Vista;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import universidadeje.AccesoADatos.AlumnoData;
+import universidadeje.AccesoADatos.InscripcionData;
 import universidadeje.AccesoADatos.MateriaData;
 import universidadeje.Entidades.Alumno;
+import universidadeje.Entidades.Inscripcion;
 import universidadeje.Entidades.Materia;
 
 
@@ -13,24 +15,26 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
     
     private ArrayList<Materia> listaM;
     private ArrayList<Alumno> listaA;
-    
+    private ArrayList<Inscripcion> listaI;
     private MateriaData mData;
     private AlumnoData aData;
-    
+    private InscripcionData iData;
     private DefaultTableModel modelo = new DefaultTableModel (){ 
     public boolean isCellEditable(int fila, int Columna){
-    return false;
+    return true;
     }  
     };
 
     public CargaDeNotas() {
-        
+    iData = new InscripcionData();    
     aData = new AlumnoData();
     listaA = (ArrayList<Alumno>)aData.listaAlumno();
     mData = new MateriaData();
-        
+    Alumno alu = new Alumno();
+    listaI = (ArrayList<Inscripcion>) iData.listaInscrPorAlum(alu.getIdAlumno());
         
         initComponents();
+        cargarAlumnos();
         armarCabeceraTabla();
         
     }
@@ -139,12 +143,16 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
 
     
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
-        // TODO add your handling code here:
+        
+        
+        
+        
+        
     }//GEN-LAST:event_jBguardarActionPerformed
 
     
     private void jCalumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCalumnosActionPerformed
-      
+       
            
        
     }//GEN-LAST:event_jCalumnosActionPerformed
@@ -159,6 +167,8 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         }
  }
  
+ 
+ 
   private void armarCabeceraTabla(){
         ArrayList<Object> filaCabecera = new ArrayList<>();
              filaCabecera.add("Código");
@@ -170,6 +180,30 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         }
             jTtabla.setModel(modelo);
     }
+  
+  private void mostrarNota(){
+      
+      Alumno alumno = (Alumno) jCalumnos.getSelectedItem();
+      if (alumno != null) {
+          for (Inscripcion inscrip : listaI) {
+              Materia mate = inscrip.getMateria();
+              modelo.addRow(new Object[]){
+              mate.getIdMateria(),
+              mate.getNombre(),
+              inscrip.getNota()
+                      
+              
+              
+          } 
+          }
+          
+      }
+      
+      
+  }
+          
+          
+  
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
