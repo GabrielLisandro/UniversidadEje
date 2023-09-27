@@ -175,12 +175,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMnotasActionPerformed
 
     private void jMalumxmatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMalumxmatActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        ListadoAlumnoPorMateria lam = new ListadoAlumnoPorMateria();
-        lam.setVisible(true);
-        escritorio.add(lam);
-        escritorio.moveToFront(lam);
+
     }//GEN-LAST:event_jMalumxmatActionPerformed
 
     private void jMsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMsalirActionPerformed
@@ -188,7 +183,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMsalirActionPerformed
 
     private void jMalumxMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMalumxMatActionPerformed
-        // TODO add your handling code here:
+     
     }//GEN-LAST:event_jMalumxMatActionPerformed
 
     

@@ -20,6 +20,9 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
     private InscripcionData iData;
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int fila, int Columna) {
+            if (Columna ==2){
+            return true;
+            }
             return false;
         }
     };
@@ -157,6 +160,8 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         dispose();
 
     }//GEN-LAST:event_jBsalirActionPerformed
+    
+    //Cargamos los aLumnos al ComboBox
     private void cargarAlumnos() {
         for (Alumno item : listaA) {
             jCalumnos.addItem(item + "");
@@ -192,9 +197,7 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
                 }
                 break; // Exit the loop once you find the matching alumno.
             }
-        
-    }
-
+        }
     }
 
     private void borrarFilasTabla() {

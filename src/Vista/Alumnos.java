@@ -259,7 +259,6 @@ public class Alumnos extends javax.swing.JInternalFrame {
                 alumnoBuscado.setFechaNacimiento(fechaNacimiento);
                 alumnodata.modificarAlumno(alumnoBuscado);
             }
-            // Limpiar los campos después de guardar
             limpiarCampos();
             alumnoBuscado = null;
 

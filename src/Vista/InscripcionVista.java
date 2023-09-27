@@ -20,11 +20,7 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
     
    // private DefaultTableModel modelo;
     
-//Creamos una clase interna que sobre escriba un método que se encarga de
-//decidir que celda es editable o no.
     private DefaultTableModel modelo = new DefaultTableModel (){ 
-//Creamos una nueva clase,que va a extender de TableModel. 
-//Dentro de las llaves vamos a sobre escribir = Clase Anónima (Creo una clase y la instancio)
     public boolean isCellEditable(int fila, int Columna){
     return false;
     }  
@@ -36,7 +32,6 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
     
     aData = new AlumnoData();
     listaA = (ArrayList<Alumno>) aData.listaAlumno();
-//modelo = new DefaultTableModel();
     inscData = new InscripcionData();
     mData = new MateriaData();
     
