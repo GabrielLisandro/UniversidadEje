@@ -218,12 +218,8 @@ public class AlumnoData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al modificar estado: " + ex.getMessage());
         }
-
-
-
-
-
-
     }
 
     }
+
+    

@@ -2,6 +2,7 @@ package universidadeje.Vistas;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import universidadeje.AccesoADatos.AlumnoData;
 import universidadeje.AccesoADatos.InscripcionData;
@@ -32,8 +33,8 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         aData = new AlumnoData();
         listaA = (ArrayList<Alumno>) aData.listaAlumno();
         mData = new MateriaData();
-//        Alumno alu = new Alumno();
-//        listaI = (ArrayList<Inscripcion>) iData.listaInscrPorAlum(alu.getIdAlumno());
+        Alumno alu = new Alumno();
+        listaI = (ArrayList<Inscripcion>) iData.listaInscrPorAlum(alu.getIdAlumno());
 
         initComponents();
         cargarAlumnos();
@@ -145,8 +146,33 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
 
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
+                                                            
+        // TODO add your handling code here:
+        //seleccion de fila
+        int fila = jTtabla.getSelectedRow();
+        if (fila != -1) {
 
+            //declaracion de variables para enviar al metodo actualizar nota
+            int i = jTtabla.getSelectedRow();
+            double nota = Double.parseDouble(jTtabla.getModel().getValueAt(i, 2).toString());
 
+            //if para que la nota este entre 1 y 10
+            if (nota < 1 || nota > 10) {
+                JOptionPane.showMessageDialog(null, "La nota debe ser entre 1 y 10.");
+            } else {
+
+                //declaracion de variables para enviar al metodo actualizar nota
+                String nombre = jCalumnos.getSelectedItem().toString();
+                int idAlumno = buscarIdAlumnoPorNombre(nombre);
+                int idMateria = Integer.parseInt(jTtabla.getModel().getValueAt(i, 0).toString());
+
+                //metodo para actualizar nota
+                iData.actualizarNota(idAlumno, idMateria, nota);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno"); 
+                    
+        }
     }//GEN-LAST:event_jBguardarActionPerformed
 
 
@@ -180,12 +206,14 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         jTtabla.setModel(modelo);
     }
 
-    private void mostrarNota() {
-       borrarFilasTabla();
+   
+private void mostrarNota() {
+    borrarFilasTabla();
     String selectedAlumnoName = (String) jCalumnos.getSelectedItem();
+
     if (selectedAlumnoName != null) {
         for (Alumno alumno : listaA) {
-        
+            if (alumno.toString().equals(selectedAlumnoName)) {
                 List<Inscripcion> listaI = iData.listaInscrPorAlum(alumno.getIdAlumno());
                 for (Inscripcion inscrip : listaI) {
                     Materia mate = inscrip.getMateria();
@@ -195,11 +223,11 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
                         inscrip.getNota()
                     });
                 }
-                break; // Exit the loop once you find the matching alumno.
+                break; // Salir del bucle una vez que encuentres el alumno
             }
         }
     }
-
+}
     private void borrarFilasTabla() {
         int indice = modelo.getRowCount() - 1;
 
@@ -207,6 +235,21 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
             modelo.removeRow(i);
         }
     }
+        private int buscarIdAlumnoPorNombre(String nombre) {
+    int idAlumno = -1; // Valor por defecto si no se encuentra
+
+    for (Alumno alumno : listaA) {
+        if (alumno.toString().equals(nombre)) {
+            idAlumno = alumno.getIdAlumno();
+            break; // Salir del bucle una vez que encuentres el alumno
+        }
+    
+    }  
+        return idAlumno;
+        
+        }   
+        
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBguardar;
@@ -217,4 +260,12 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTtabla;
     // End of variables declaration//GEN-END:variables
+
+    private Iterable<Alumno> listaA() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
+   
 }
