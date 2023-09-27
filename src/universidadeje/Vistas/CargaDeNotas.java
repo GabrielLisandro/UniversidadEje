@@ -1,4 +1,4 @@
-package Vista;
+package universidadeje.Vistas;
 
 import java.util.ArrayList;
 import java.util.List;

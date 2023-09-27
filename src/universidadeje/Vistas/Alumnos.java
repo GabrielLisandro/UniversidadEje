@@ -1,5 +1,5 @@
 
-package Vista;
+package universidadeje.Vistas;
 
 import java.sql.Date;
 import java.time.ZoneId;

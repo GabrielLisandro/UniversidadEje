@@ -1,5 +1,5 @@
 
-package Vista;
+package universidadeje.Vistas;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -123,10 +123,10 @@ public class InscripcionVista extends javax.swing.JInternalFrame {
             }
         ));
         jTtabla.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jTtablaAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }

@@ -1,5 +1,5 @@
 
-package Vista;
+package universidadeje.Vistas;
 
 import javax.swing.JOptionPane;
 import universidadeje.AccesoADatos.MateriaData;
