@@ -236,7 +236,8 @@ public class Alumnos extends javax.swing.JInternalFrame {
                     al.setEstado(jRestado.isSelected());
                     
                     alumnodata.guardarAlumno(al);
-                }
+                }else{
+                JOptionPane.showMessageDialog(null, "Debe ingresar un Alumno mayor de 17 años");}
                 
             }
             
