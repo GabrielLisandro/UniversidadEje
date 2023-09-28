@@ -157,7 +157,7 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
             double nota = Double.parseDouble(jTtabla.getModel().getValueAt(i, 2).toString());
 
             //if para que la nota este entre 1 y 10
-            if (nota < 1 || nota > 10) {
+            if (nota < 0 || nota > 10) {
                 JOptionPane.showMessageDialog(null, "La nota debe ser entre 1 y 10.");
             } else {
 
