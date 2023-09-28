@@ -1,4 +1,3 @@
-
 package universidadeje.Vistas;
 
 import java.sql.Date;
@@ -8,18 +7,18 @@ import javax.swing.JOptionPane;
 import universidadeje.AccesoADatos.AlumnoData;
 import universidadeje.Entidades.Alumno;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.ZoneId;
 
-
 public class Alumnos extends javax.swing.JInternalFrame {
-
+    
     AlumnoData alumnodata = new AlumnoData();
     Alumno alumnoBuscado = new Alumno();
-
+    
     public Alumnos() {
         initComponents();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -191,12 +190,12 @@ public class Alumnos extends javax.swing.JInternalFrame {
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
         dispose();
     }//GEN-LAST:event_jBsalirActionPerformed
-
     
+
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
-
+        
         alumnoBuscado = alumnodata.buscarAlumnoDni(Integer.parseInt(jTdni.getText()));
-
+        
         if (alumnoBuscado != null) {
             jTapellido.setText(alumnoBuscado.getApellido());
             jTnombre.setText(alumnoBuscado.getNombre());
@@ -215,27 +214,56 @@ public class Alumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBbuscarActionPerformed
 
     private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
-
+        try {
+            int dni = Integer.parseInt(jTdni.getText());
+            String apellido = jTapellido.getText();
+            String nombre = jTnombre.getText();
+            LocalDate fechaNac = jDfechanac.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            
+            Alumno al = new Alumno();
+            
+            Period verificarEdad = Period.between(fechaNac, LocalDate.now());
+            
+            if (nombre.isEmpty() || apellido.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar los datos");
+                
+            } else {
+                if (verificarEdad.getYears() >= 17) {
+                    al.setApellido(apellido);
+                    al.setNombre(nombre);
+                    al.setDni(dni);
+                    al.setFechaNacimiento(fechaNac);
+                    al.setEstado(jRestado.isSelected());
+                    
+                    alumnodata.guardarAlumno(al);
+                }
+                
+            }
+            
+        } catch (Exception e)  {
+            JOptionPane.showMessageDialog(null,"Revise los datos");
+        }
+        
         limpiarCampos();
     }//GEN-LAST:event_jBnuevoActionPerformed
 
     private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
-
+        
         try {
             int dni = Integer.parseInt(jTdni.getText());
-
+            
             if (jTdni.getText() != null) {
                 alumnodata.eliminarAlumnodni(dni);
             }
             limpiarCampos();
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e);
         }
     }//GEN-LAST:event_jBeliminarActionPerformed
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
-
+        
         try {
             int dni = Integer.parseInt(jTdni.getText());
             String apellido = jTapellido.getText();
@@ -249,25 +277,26 @@ public class Alumnos extends javax.swing.JInternalFrame {
             /*El profe lo hace asi
                 java.util.Date sFecha = jDfechanac.getDate();
         LocalDate fecha = sFecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();*/
-            if (alumnoBuscado == null) {
-                alumnoBuscado = new Alumno(dni, apellido, nombre, fechaNacimiento, estado);
-                alumnodata.guardarAlumno(alumnoBuscado);
-            } else {
-                alumnoBuscado.setDni(dni);
-                alumnoBuscado.setNombre(nombre);
-                alumnoBuscado.setApellido(apellido);
-                alumnoBuscado.setFechaNacimiento(fechaNacimiento);
-                alumnodata.modificarAlumno(alumnoBuscado);
-            }
+//            if (alumnoBuscado == null) {
+//                alumnoBuscado = new Alumno(dni, apellido, nombre, fechaNacimiento, estado);
+//                alumnodata.guardarAlumno(alumnoBuscado);
+//            } else {
+            alumnoBuscado.setDni(dni);
+            alumnoBuscado.setNombre(nombre);
+            alumnoBuscado.setApellido(apellido);
+            alumnoBuscado.setFechaNacimiento(fechaNacimiento);
+            alumnodata.modificarAlumno(alumnoBuscado);
+            
             limpiarCampos();
+            System.out.println("Funciona");
             alumnoBuscado = null;
-
+            
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un DNI valido");
         }
     }//GEN-LAST:event_jBguardarActionPerformed
-
     
+
     private void jRestadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRestadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRestadoActionPerformed
@@ -292,12 +321,10 @@ public class Alumnos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTnombre;
     // End of variables declaration//GEN-END:variables
 
-    
     private void activarBotones() {
         jBeliminar.setEnabled(true);
         jBguardar.setEnabled(true);
     }
-
     
     private void limpiarCampos() {
         jTdni.setText("");

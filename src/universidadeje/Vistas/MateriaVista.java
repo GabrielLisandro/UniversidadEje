@@ -182,6 +182,24 @@ try{
 
     
     private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
+        try{
+         
+        String nombre = jTnombre.getText();
+        int anioMateria = Integer.parseInt(jTanio.getText());
+        boolean estado = jRestado.isSelected();
+   
+    // Crear un objeto Materia con los datos ingresados
+    Materia nuevaMateria = new Materia(nombre,anioMateria,estado);
+
+    // Llamar al método para guardar el alumno en la base de datos
+    materiadata.guardarMateria(nuevaMateria);
+            
+    // Limpiar los campos después de guardar
+        limpiarCampos(); 
+        
+        }catch (NumberFormatException e){
+        JOptionPane.showMessageDialog(this, "Error: Ingrese un dato válido");
+        }
         limpiarCampos();        
     }//GEN-LAST:event_jBnuevoActionPerformed
 
@@ -215,7 +233,7 @@ try{
     Materia nuevaMateria = new Materia(codigo,nombre,anioMateria,estado);
 
     // Llamar al método para guardar el alumno en la base de datos
-    materiadata.guardarMateria(nuevaMateria);
+    materiadata.modificarMateria(nuevaMateria);
             
     // Limpiar los campos después de guardar
         limpiarCampos(); 
