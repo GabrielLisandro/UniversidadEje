@@ -103,6 +103,7 @@ public class MateriaData {
                 mater.add(materia);
             }
             ps.close();
+            return mater;
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se encontro la lista de materias" + ex.getMessage());

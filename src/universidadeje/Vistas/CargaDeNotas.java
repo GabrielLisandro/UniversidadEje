@@ -21,8 +21,8 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
     private InscripcionData iData;
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int fila, int Columna) {
-            if (Columna ==2){
-            return true;
+            if (Columna == 2) {
+                return true;
             }
             return false;
         }
@@ -146,7 +146,7 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
 
 
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
-                                                            
+
         // TODO add your handling code here:
         //seleccion de fila
         int fila = jTtabla.getSelectedRow();
@@ -157,6 +157,7 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
             double nota = Double.parseDouble(jTtabla.getModel().getValueAt(i, 2).toString());
 
             //if para que la nota este entre 1 y 10
+            //Le puse entre 0 y 10 por si es muy aplazado el alumne. atte Gabriel
             if (nota < 0 || nota > 10) {
                 JOptionPane.showMessageDialog(null, "La nota debe ser entre 1 y 10.");
             } else {
@@ -170,8 +171,8 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
                 iData.actualizarNota(idAlumno, idMateria, nota);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno"); 
-                    
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno");
+
         }
     }//GEN-LAST:event_jBguardarActionPerformed
 
@@ -186,7 +187,7 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         dispose();
 
     }//GEN-LAST:event_jBsalirActionPerformed
-    
+
     //Cargamos los aLumnos al ComboBox
     private void cargarAlumnos() {
         for (Alumno item : listaA) {
@@ -206,28 +207,28 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         jTtabla.setModel(modelo);
     }
 
-   
-private void mostrarNota() {
-    borrarFilasTabla();
-    String selectedAlumnoName = (String) jCalumnos.getSelectedItem();
+    private void mostrarNota() {
+        borrarFilasTabla();
+        String selectedAlumnoName = (String) jCalumnos.getSelectedItem();
 
-    if (selectedAlumnoName != null) {
-        for (Alumno alumno : listaA) {
-            if (alumno.toString().equals(selectedAlumnoName)) {
-                List<Inscripcion> listaI = iData.listaInscrPorAlum(alumno.getIdAlumno());
-                for (Inscripcion inscrip : listaI) {
-                    Materia mate = inscrip.getMateria();
-                    modelo.addRow(new Object[]{
-                        mate.getIdMateria(),
-                        mate.getNombre(),
-                        inscrip.getNota()
-                    });
+        if (selectedAlumnoName != null) {
+            for (Alumno alumno : listaA) {
+                if (alumno.toString().equals(selectedAlumnoName)) {
+                    List<Inscripcion> listaI = iData.listaInscrPorAlum(alumno.getIdAlumno());
+                    for (Inscripcion inscrip : listaI) {
+                        Materia mate = inscrip.getMateria();
+                        modelo.addRow(new Object[]{
+                            mate.getIdMateria(),
+                            mate.getNombre(),
+                            inscrip.getNota()
+                        });
+                    }
+                    break; // Salir del bucle una vez que encuentres el alumno
                 }
-                break; // Salir del bucle una vez que encuentres el alumno
             }
         }
     }
-}
+
     private void borrarFilasTabla() {
         int indice = modelo.getRowCount() - 1;
 
@@ -235,21 +236,21 @@ private void mostrarNota() {
             modelo.removeRow(i);
         }
     }
-        private int buscarIdAlumnoPorNombre(String nombre) {
-    int idAlumno = -1; // Valor por defecto si no se encuentra
 
-    for (Alumno alumno : listaA) {
-        if (alumno.toString().equals(nombre)) {
-            idAlumno = alumno.getIdAlumno();
-            break; // Salir del bucle una vez que encuentres el alumno
+    private int buscarIdAlumnoPorNombre(String nombre) {
+        int idAlumno = -1; // Valor por defecto si no se encuentra
+
+        for (Alumno alumno : listaA) {
+            if (alumno.toString().equals(nombre)) {
+                idAlumno = alumno.getIdAlumno();
+                break; // Salir del bucle una vez que encuentres el alumno
+            }
+
         }
-    
-    }  
         return idAlumno;
-        
-        }   
-        
-    
+
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBguardar;
@@ -265,7 +266,4 @@ private void mostrarNota() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-
-   
 }
