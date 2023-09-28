@@ -108,6 +108,11 @@ public class Menu_Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMalumxmat);
 
         jMsalir.setText("Salir");
+        jMsalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMsalirMouseClicked(evt);
+            }
+        });
         jMsalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMsalirActionPerformed(evt);
@@ -179,7 +184,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMalumxmatActionPerformed
 
     private void jMsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMsalirActionPerformed
-       System.exit(0);
+       
     }//GEN-LAST:event_jMsalirActionPerformed
 
     private void jMalumxMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMalumxMatActionPerformed
@@ -191,6 +196,10 @@ public class Menu_Principal extends javax.swing.JFrame {
         escritorio.moveToFront(yer);
         
     }//GEN-LAST:event_jMalumxMatActionPerformed
+
+    private void jMsalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMsalirMouseClicked
+       System.exit(0);
+    }//GEN-LAST:event_jMsalirMouseClicked
 
     
     public static void main(String args[]) {
